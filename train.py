@@ -8,7 +8,8 @@ from data_gen import DeepHNDataset
 from mobilenet_v2 import MobileNetV2
 from optimizer import HNetOptimizer
 from utils import parse_args, save_checkpoint, AverageMeter, clip_gradient, get_logger
-
+from config import output_dir
+import os
 
 def train_net(args):
     torch.manual_seed(7)
@@ -82,7 +83,7 @@ def train_net(args):
             epochs_since_improvement = 0
 
         # Save checkpoint
-        save_checkpoint(epoch, epochs_since_improvement, model, optimizer, best_loss, is_best)
+        save_checkpoint(epoch, epochs_since_improvement, model, optimizer, best_loss, is_best, output_dir)
 
 
 def train(train_loader, model, criterion, optimizer, epoch, logger):
@@ -161,6 +162,7 @@ def valid(valid_loader, model, criterion, logger):
 def main():
     global args
     args = parse_args()
+    os.makedirs(output_dir)
     train_net(args)
 
 

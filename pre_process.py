@@ -9,6 +9,7 @@ from tqdm import tqdm
 
 from config import image_folder
 from config import train_file, valid_file, test_file
+from config import num_train, num_valid, num_test
 
 # import sklearn.external.joblib as extjoblib
 import joblib
@@ -89,9 +90,9 @@ if __name__ == "__main__":
     num_files = len(files)
     print('num_files: ' + str(num_files))
 
-    num_train_files = 100000
-    num_valid_files = 8287
-    num_test_files = 10000
+    num_train_files = num_train
+    num_valid_files = num_valid
+    num_test_files = num_test
 
     train_files = files[:num_train_files]
     valid_files = files[num_train_files:num_train_files + num_valid_files]
