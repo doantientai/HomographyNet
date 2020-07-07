@@ -1,5 +1,5 @@
 import os
-import pickle
+# import pickle
 import random
 
 import cv2 as cv
@@ -10,6 +10,8 @@ from tqdm import tqdm
 from config import image_folder
 from config import train_file, valid_file, test_file
 
+# import sklearn.external.joblib as extjoblib
+import joblib
 
 def get_datum(img, test_image, size, rho, top_point, patch_size):
     left_point = (top_point[0], patch_size + top_point[1])
@@ -103,9 +105,13 @@ if __name__ == "__main__":
     print('num_valid: ' + str(len(valid)))
     print('num_test: ' + str(len(test)))
 
-    with open(train_file, 'wb') as f:
-        pickle.dump(train, f)
-    with open(valid_file, 'wb') as f:
-        pickle.dump(valid, f)
-    with open(test_file, 'wb') as f:
-        pickle.dump(test, f)
+    # with open(train_file, 'wb') as f:
+    #     pickle.dump(train, f)
+    # with open(valid_file, 'wb') as f:
+    #     pickle.dump(valid, f)
+    # with open(test_file, 'wb') as f:
+    #     pickle.dump(test, f)
+
+    joblib.dump(train, train_file)
+    joblib.dump(valid, valid_file)
+    joblib.dump(test, test_file)

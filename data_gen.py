@@ -1,4 +1,4 @@
-import pickle
+# import pickle
 
 import cv2 as cv
 import numpy as np
@@ -6,13 +6,15 @@ from torch.utils.data import Dataset
 
 from config import im_size
 
+import joblib
 
 class DeepHNDataset(Dataset):
     def __init__(self, split):
         filename = 'data/{}.pkl'.format(split)
         print('loading {}...'.format(filename))
-        with open(filename, 'rb') as file:
-            samples = pickle.load(file)
+        # with open(filename, 'rb') as file:
+        #     samples = pickle.load(file)
+        samples = joblib.load(filename)
         np.random.shuffle(samples)
         self.split = split
         self.samples = samples

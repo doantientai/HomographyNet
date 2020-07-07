@@ -1,10 +1,12 @@
-import pickle
+# import pickle
 import argparse
 import cv2
 import numpy as np
 
 from config import print_freq
 from utils import AverageMeter
+
+import joblib
 
 MIN_MATCH_COUNT = 10
 
@@ -68,8 +70,9 @@ def compute_mace(H, perturbed_four_points):
 
 def test(args):
     filename = 'data/test.pkl'
-    with open(filename, 'rb') as file:
-        samples = pickle.load(file)
+    # with open(filename, 'rb') as file:
+    #     samples = pickle.load(file)
+    samples = joblib.load(filename)
 
     mace_list = []
     maces = AverageMeter()
